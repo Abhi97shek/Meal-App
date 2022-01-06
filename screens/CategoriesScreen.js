@@ -1,16 +1,21 @@
 import React from "react";
 import {View,StyleSheet,Text,Button} from 'react-native';
+import { FlatList } from "react-native-gesture-handler";
+import { CATEGORIES } from "../data/dummy-data";
 
 
+const renderGridItem=(itemData)=>{
+
+    return (
+    <View style={styles.gridItems}>
+        <Text>{itemData.item.title}</Text>
+    </View>
+    )
+};
 const CategoriesScreen = (props)=>{
 
     return (
-        <View style={styles.screen}>
-            <Text> This is Categories Screen</Text>
-            <Button title="Go To Meals!" onPress={()=>{
-                props.navigation.navigate('CategoryMeal');
-            }}/>
-        </View>
+       <FlatList data={CATEGORIES} renderItem={renderGridItem} numColumns={2}/>
     )
 };
 
@@ -19,6 +24,11 @@ const styles = StyleSheet.create({
         flex:1,
         justifyContent:'center',
         alignItems:'center'
+    },
+    gridItems:{
+        flex:1,
+        margin:15,
+        height:150
     }
 
 });
