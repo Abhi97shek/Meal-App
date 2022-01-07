@@ -1,12 +1,16 @@
 import React from "react";
-import {View,StyleSheet,Text,Button} from 'react-native';
-
-
+import {View,StyleSheet,Text,Button,Platform} from 'react-native';
+import { CATEGORIES } from "../data/dummy-data";
+import Colors from "../constants/Colors";
 const CategoryMealScreen = (props)=>{
-
+    const catId = props.navigation.getParam('categoryId');
+    const selectedData = CATEGORIES.find((cat)=> cat.id === catId);
+    
+   
     return (
         <View style={styles.screen}>
             <Text> This is Category Meal Screen</Text>
+            <Text>{selectedData.title}</Text>
             <Button title="Go to Meal Details!" onPress={()=>{
                 props.navigation.navigate('MealDetail')
             }}/>
@@ -16,7 +20,18 @@ const CategoryMealScreen = (props)=>{
         </View>
     )
 };
+CategoryMealScreen.navigationOptions = navigationData=>{
+    let catId = navigationData.navigation.getParam('categoryId');
+    const selectedData = CATEGORIES.find((cat)=> cat.id === catId);
 
+    return {
+        title:selectedData.title,
+        headerStyle:{
+            backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : 'white'
+        },
+        headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primaryColor
+    }
+};
 const styles = StyleSheet.create({
     screen:{
         flex:1,
