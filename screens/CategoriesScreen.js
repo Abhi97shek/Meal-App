@@ -13,7 +13,8 @@ const CategoriesScreen = (props)=>{
         return (
             <View style={styles.gridItems}>
             <TouchableNativeFeedback  onPress={()=>props.navigation.navigate('CategoryMeal',{
-                categoryId: itemData.item.id
+                categoryId: itemData.item.id,
+                categoryColor:itemData.item.color
             })}>  
                   <View style={{...styles.containerMeal,...{backgroundColor:itemData.item.color}}}>
                     <Text style={styles.title} numberOfLines={2}>{itemData.item.title}</Text>
