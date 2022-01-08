@@ -1,7 +1,8 @@
 import React from "react";
 import {View,StyleSheet,Text,Button} from 'react-native';
 import { MEAL } from "../data/dummy-data";
-
+import HeaderButton from "../components/HeaderButton";
+import {HeaderButtons,Item} from "react-navigation-header-buttons";
 const MealDetailScreen = (props)=>{
         const mealId = props.navigation.getParam('mealId');
 
@@ -10,11 +11,7 @@ const MealDetailScreen = (props)=>{
     return (
         <View style={styles.screen}>
             <Text>{displayData.title}</Text>
-            {/* <Text> This is Meal Detail Screen</Text>
 
-            <Button title="Go Back To Main!" onPress={()=>{
-                props.navigation.popToTop();
-            }}/> */}
         </View>
     )
 };
@@ -25,7 +22,10 @@ MealDetailScreen.navigationOptions =(navigationData)=>{
     const displayData = MEAL.find((meal)=> meal.id === mealId);
 
     return{
-        title:displayData.title
+        title:displayData.title,
+        headerRight:<HeaderButtons HeaderButtonComponent={HeaderButton}>
+            <Item title="Favourite" iconName="star-outline" onPress={()=>{console.log('hi')}}/>
+        </HeaderButtons>
     }
 
 
