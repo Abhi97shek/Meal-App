@@ -1,11 +1,11 @@
 import React from "react";
 import {View,Text,StyleSheet,TouchableOpacity,ImageBackground} from "react-native";
 
-const MealItem = ({title,duration,complexity,afford,imageUrl})=>{
+const MealItem = ({title,duration,complexity,afford,imageUrl,onSelectMeal})=>{
 
         return (
             <View style={styles.mealItem}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={onSelectMeal}>
             <View style={{...styles.mealRow,...styles.mealHeader}}>
                 <ImageBackground source={{uri:imageUrl}} style={styles.bgImg}>
                 <Text style={styles.title}>{title}</Text>
@@ -23,9 +23,6 @@ const MealItem = ({title,duration,complexity,afford,imageUrl})=>{
 
 
 };
-
-
-
 
 
 const styles = StyleSheet.create({

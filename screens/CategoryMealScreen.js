@@ -10,7 +10,10 @@ const CategoryMealScreen = (props)=>{
        
         return (
 
-            <MealItem title={itemData.item.title} duration={itemData.item.duration} complexity={itemData.item.complexity} afford={itemData.item.affordability} imageUrl={itemData.item.imageUrl}/>
+            <MealItem title={itemData.item.title} duration={itemData.item.duration} complexity={itemData.item.complexity} afford={itemData.item.affordability} 
+            imageUrl={itemData.item.imageUrl} onSelectMeal={()=>{props.navigation.navigate('MealDetail',{
+                mealId:itemData.item.id
+            })}}/>
 
            
         );
@@ -30,15 +33,7 @@ const CategoryMealScreen = (props)=>{
             style={{width:'100%',padding:10}}
             />
 
-      
-            {/* <Text> This is Category Meal Screen</Text>
-            <Text>{selectedData.title}</Text>
-            <Button title="Go to Meal Details!" onPress={()=>{
-                props.navigation.navigate('MealDetail')
-            }}/>
-            <Button title="Go Back!" onPress={()=>{
-                props.navigation.goBack();
-            }} /> */}
+
         </View>
     )
 };
