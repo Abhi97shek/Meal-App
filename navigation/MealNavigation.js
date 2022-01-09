@@ -22,6 +22,18 @@ const MealsNavigation = createStackNavigator({
     }
 });
 
+const FavouriteNavigation = createStackNavigator({
+    Favourite:FavouriteScreen,
+    MealDetail:MealDetailScreen
+},
+{
+    defaultNavigationOptions:{
+        headerStyle:{
+            backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : 'white'
+        },
+        headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primaryColor
+    }
+});
 const MealFavTabNavigator = createMaterialBottomTabNavigator({
     Meal:{
         screen:MealsNavigation,
@@ -34,7 +46,7 @@ const MealFavTabNavigator = createMaterialBottomTabNavigator({
            
         }
     },
-    Favorites: {screen:FavouriteScreen,
+    Favorites: {screen:FavouriteNavigation,
     navigationOptions:{
         tabBarIcon:(tabInfo)=>{
             return (
