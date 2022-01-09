@@ -1,5 +1,5 @@
 import React from "react";
-import {View,StyleSheet,Text,Button} from 'react-native';
+import {View,StyleSheet,Text,Button,ScrollView,Image} from 'react-native';
 import { MEAL } from "../data/dummy-data";
 import HeaderButton from "../components/HeaderButton";
 import {HeaderButtons,Item} from "react-navigation-header-buttons";
@@ -9,10 +9,27 @@ const MealDetailScreen = (props)=>{
         const displayData = MEAL.find((meal)=> meal.id === mealId);
 
     return (
-        <View style={styles.screen}>
-            <Text>{displayData.title}</Text>
-
-        </View>
+        <ScrollView>
+            <Image source={{uri:displayData.imageUrl}} style={styles.Image}/>
+            <View style={styles.details}>
+                    <Text>{displayData.duration}</Text>
+                    <Text>{displayData.complexity}</Text>
+                    <Text>{displayData.affordability}</Text>
+            </View>
+            <Text style={styles.title}>Ingredients</Text>
+            {
+                displayData.ingredients.map((ingr)=>(
+                    <Text style={styles.listItem} key={ingr}>{ingr}</Text>
+                ))          
+            }
+            <Text style={styles.title}>Steps</Text>
+            {
+                displayData.steps.map((step)=>(
+                    <Text style={styles.listItem} key={step}>{step}</Text>
+                ))          
+            }
+        
+        </ScrollView>
     )
 };
 
@@ -32,10 +49,28 @@ MealDetailScreen.navigationOptions =(navigationData)=>{
 };
 
 const styles = StyleSheet.create({
-    screen:{
-        flex:1,
-        justifyContent:'center',
-        alignItems:'center'
+    Image:{
+        width:'100%',
+        height:200,
+    },
+    title:{
+        fontSize:20,
+        textAlign:'center'
+    },
+    details:{
+        flexDirection:'row',
+        padding:15,
+        justifyContent:'space-around',
+        backgroundColor:'rgba(0,0,0,0.5)',
+        color:'white'
+        
+    },
+    listItem:{
+        marginHorizontal:20,
+        marginVertical:10,
+        borderColor:"#ccc",
+        padding:10,
+        borderWidth:1
     }
 
 });
