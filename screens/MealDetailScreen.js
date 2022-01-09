@@ -24,7 +24,7 @@ MealDetailScreen.navigationOptions =(navigationData)=>{
     return{
         title:displayData.title,
         headerRight:<HeaderButtons HeaderButtonComponent={HeaderButton}>
-            <Item title="Favourite" iconName="star-outline" onPress={()=>{console.log('hi')}}/>
+            <Item title="Favourite" iconName="star-outline" />
         </HeaderButtons>
     }
 

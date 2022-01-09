@@ -3,8 +3,8 @@ import {View,StyleSheet,Text,Button,TouchableOpacity,Platform,TouchableNativeFee
 import { FlatList } from "react-native-gesture-handler";
 import { CATEGORIES } from "../data/dummy-data";
 import Colors from "../constants/Colors";
-
-
+import { HeaderButtons,Item } from "react-navigation-header-buttons";
+import HeaderButton from "../components/HeaderButton";
 const CategoriesScreen = (props)=>{
 
 
@@ -31,6 +31,9 @@ const CategoriesScreen = (props)=>{
 };
 CategoriesScreen.navigationOptions = {
     title: 'Meal Categories',
+    headerLeft:<HeaderButtons HeaderButtonComponent={HeaderButton}>
+    <Item title="HameBurger" iconName="ios-menu" ></Item>
+</HeaderButtons>
     
 
 

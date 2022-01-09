@@ -2,7 +2,10 @@ import React from "react";
 import {View,StyleSheet,Text,Button,Platform,FlatList} from 'react-native';
 import { CATEGORIES,MEAL } from "../data/dummy-data";
 import MealItem from "../components/MealItem";
+
 import Colors from "../constants/Colors";
+
+import { Ionicons } from "@expo/vector-icons";
 const CategoryMealScreen = (props)=>{
 
     const renderMealItem = (itemData)=>{
@@ -47,6 +50,7 @@ CategoryMealScreen.navigationOptions = navigationData=>{
         headerStyle:{
             backgroundColor:mealColor
         }
+      
         
     }
 };
