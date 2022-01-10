@@ -8,6 +8,7 @@ import CategoryMealScreen from "../screens/CategoryMealScreen";
 import MealDetailScreen from "../screens/MealDetailScreen";
 import FavouriteScreen from "../screens/FavouriteScreen";
 import { Ionicons } from '@expo/vector-icons';
+import FilterScreen from "../screens/FilterScreen";
 const MealsNavigation = createStackNavigator({
     Categories:CategoriesScreen,
     CategoryMeal:CategoryMealScreen,
@@ -53,7 +54,17 @@ const MealFavTabNavigator = createMaterialBottomTabNavigator({
                 <Ionicons name='ios-star' size={25} color={'white'}/>
             )
         }
-    }}
+    }},
+    Filter:{
+        screen:FilterScreen,
+        navigationOptions:{
+            tabBarIcon:(tabInfo)=>{
+                return (
+                    <Ionicons name="filter" size={25} color={'white'} />
+                )
+            }
+        }
+    }
 },{
     activeColor: '#f0edf6',
     inactiveColor: '#3e2465',
