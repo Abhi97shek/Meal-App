@@ -1,6 +1,8 @@
 import React,{useState} from "react";
-import {View,StyleSheet,Text,Switch} from 'react-native';
-
+import {View,StyleSheet,Text,Switch,Button} from 'react-native';
+import { HeaderButtons,Item } from "react-navigation-header-buttons";
+import HeaderButton from "../components/HeaderButton";
+import { Ionicons } from "@expo/vector-icons";
 
 const FilterScreen = (props)=>{
 
@@ -8,7 +10,22 @@ const FilterScreen = (props)=>{
     const [isLactoseFree,setIsLactoseFree] = useState(false);
     const [isVegan,setIsVegan] = useState(false);
     const [isVegetarian,setIsVegetarian] = useState(false);
-   
+    
+    const savedFilter = ()=>{
+        const appliedFilter ={
+            gultenFree : isGultenFree,
+            lactoseFree : isLactoseFree,
+            isVegan : isVegan,
+            isVegetarian:isVegetarian
+        };
+
+        console.log(appliedFilter);
+    }
+
+    const filterHandler =()=>{
+        savedFilter();
+    };
+
     return (
         <View style={styles.screen}>
             <Text style={styles.title}>Available Filters</Text>
@@ -40,7 +57,11 @@ const FilterScreen = (props)=>{
                     thumbColor={'red'}
                     value={isVegetarian} onValueChange={newValue=>setIsVegetarian(newValue)}/>
             </View>
-
+           
+             <View style={styles.buttonContainer}>
+                 <Button title="Save" onPress={filterHandler}/>
+             </View>
+          
         </View>
     )
 };
@@ -61,6 +82,10 @@ const styles = StyleSheet.create({
         fontSize:22,
         margin:20,
         textAlign:'center'
+    },
+    buttonContainer:{
+        width:'20%',
+        marginVertical:10
     }
 
 });
