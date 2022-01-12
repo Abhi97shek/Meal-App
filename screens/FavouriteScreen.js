@@ -8,6 +8,17 @@ const FavouriteScreen = (props)=>{
 
     const favMeals = useSelector((state)=>state.meals.favoriteMeals);
 
+    if(favMeals.length == 0 || !favMeals)
+    {
+        return (
+            <View style={styles.content}>
+                <Text>
+                    No favorite Meal Found.Start Adding some!!
+                </Text>
+            </View>
+        )
+    }
+
     const renderFavMeal = (itemData)=>{
         return(
             <MealItem title={itemData.item.title} duration={itemData.item.duration} complexity={itemData.item.complexity} afford={itemData.item.affordability} 
@@ -33,6 +44,11 @@ const FavouriteScreen = (props)=>{
 
 const styles = StyleSheet.create({
     screen:{
+        flex:1,
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    content:{
         flex:1,
         justifyContent:'center',
         alignItems:'center'
