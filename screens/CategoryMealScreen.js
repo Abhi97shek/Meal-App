@@ -2,12 +2,15 @@ import React from "react";
 import {View,StyleSheet,Text,Button,Platform,FlatList} from 'react-native';
 import { CATEGORIES,MEAL } from "../data/dummy-data";
 import MealItem from "../components/MealItem";
+import { useSelector } from "react-redux";
 
-import Colors from "../constants/Colors";
 
-import { Ionicons } from "@expo/vector-icons";
 const CategoryMealScreen = (props)=>{
 
+    const MealInfo = useSelector((state)=>state.meals.filterMeals);
+ 
+    const catId = props.navigation.getParam('categoryId');
+    const displayData = MealInfo.filter((meal)=> meal.categoryIds.indexOf(catId)>=0);
     const renderMealItem = (itemData)=>{
 
        
@@ -22,8 +25,7 @@ const CategoryMealScreen = (props)=>{
         );
 
     };
-    const catId = props.navigation.getParam('categoryId');
-    const displayData = MEAL.filter((meal)=> meal.categoryIds.indexOf(catId)>=0);
+   
     
    
     return (

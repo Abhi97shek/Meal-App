@@ -2,9 +2,11 @@ import React from "react";
 import {View,StyleSheet,Text,FlatList} from 'react-native';
 import { MEAL } from "../data/dummy-data";
 import MealItem from "../components/MealItem";
-
+import { useSelector } from "react-redux";
 
 const FavouriteScreen = (props)=>{
+
+    const favMeals = useSelector((state)=>state.meals.favoriteMeals);
 
     const renderFavMeal = (itemData)=>{
         return(
@@ -16,7 +18,7 @@ const FavouriteScreen = (props)=>{
     };
 
 
-    const MealsData = MEAL.filter((meal)=> meal.id  === 'm1' || meal.id === 'm2');
+    const MealsData = favMeals.filter((meal)=> meal.id  === 'm1' || meal.id === 'm2');
 
     return (
         <View style={StyleSheet.screen}>
