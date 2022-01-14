@@ -1,17 +1,18 @@
-import React,{useState} from "react";
+import React,{useState,useCallback} from "react";
+import { useDispatch } from "react-redux";
 import {View,StyleSheet,Text,Switch,Button} from 'react-native';
 import { HeaderButtons,Item } from "react-navigation-header-buttons";
 import HeaderButton from "../components/HeaderButton";
 import { Ionicons } from "@expo/vector-icons";
-
+import {set_filters} from "../store/actions/meals";
 const FilterScreen = (props)=>{
 
     const [isGultenFree,setIsGultenFree] = useState(false);
     const [isLactoseFree,setIsLactoseFree] = useState(false);
     const [isVegan,setIsVegan] = useState(false);
     const [isVegetarian,setIsVegetarian] = useState(false);
-    
-    const savedFilter = ()=>{
+    const dispatch = useDispatch();
+    const savedFilter = useCallback(()=>{
         const appliedFilter ={
             gultenFree : isGultenFree,
             lactoseFree : isLactoseFree,
@@ -19,8 +20,8 @@ const FilterScreen = (props)=>{
             isVegetarian:isVegetarian
         };
 
-        console.log(appliedFilter);
-    }
+        dispatch(set_filters(appliedFilter));
+    },[gultenFree,lactoseFree,isVegan,isVegetarian,dispatch]);
 
     const filterHandler =()=>{
         savedFilter();
